@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'informacion.dart';
 
 class principal extends StatefulWidget {
+  const principal({super.key});
+
   // const principal({super.key});
 
   @override
@@ -22,12 +24,12 @@ class principal extends StatefulWidget {
 }
 
 class _principalState extends State<principal> {
-  bool _isDrawerExpanded = false;
+  final bool _isDrawerExpanded = false;
   int _currentIndex = 0;
-  final prefs = new PreferenciasUsario();
+  final prefs = PreferenciasUsario();
   Color getColorBasedOnPreference(int preference) {
   if (preference == 1) {
-    return Color.fromARGB(255, 3, 15, 126); // Azul
+    return const Color.fromARGB(255, 3, 15, 126); // Azul
   } else if (preference == 2) {
     return Colors.teal; // Verde
   } else if (preference == 3) {
@@ -52,32 +54,33 @@ class _principalState extends State<principal> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => principal()),
+          MaterialPageRoute(builder: (context) => const principal()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Conceptos()),
+          MaterialPageRoute(builder: (context) => const Conceptos()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
+          MaterialPageRoute(builder: (context) => const SettingsPage()),
         );
         break;
 
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         break;
     }
   }
 
 //   @override
+  @override
   void initState() {
     super.initState();
   }
@@ -91,7 +94,7 @@ class _principalState extends State<principal> {
 
         Scaffold(
         
-            backgroundColor: Color.fromARGB(255, 237, 236, 248),
+            backgroundColor: const Color.fromARGB(255, 237, 236, 248),
             appBar: AppBar(
                 backgroundColor: getColorBasedOnPreference(prefs.colores),
                 automaticallyImplyLeading: false,
@@ -106,7 +109,7 @@ class _principalState extends State<principal> {
            body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/image.png'),
                 fit: BoxFit.cover,
@@ -115,11 +118,11 @@ class _principalState extends State<principal> {
           ),
           ListView(
             children: <Widget>[
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               titulo(),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               crearCarta(),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               _titulos(),
               _botonesRedondeados(),
             ],
@@ -136,7 +139,7 @@ class _principalState extends State<principal> {
     return Center(
       child: Text(
         'Buenos Dias, ${prefs.nombreUsuario}',
-        style: TextStyle(
+        style: const TextStyle(
             color: Color.fromARGB(255, 0, 0, 0),
             fontSize: 25,
             fontWeight: FontWeight.w400),
@@ -145,7 +148,7 @@ class _principalState extends State<principal> {
   }
 
   Widget crearCarta() {
-    return Column(children: const <Widget>[
+    return const Column(children: <Widget>[
       FadeInImage(
         image: AssetImage('assets/Logotiposinfondo.png'),
         height: 150,
@@ -159,10 +162,10 @@ class _principalState extends State<principal> {
   Widget _titulos() {
     return Container(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
+      child: const Column(
         crossAxisAlignment:
             CrossAxisAlignment.center, // Centrar el texto horizontalmente
-        children: const <Widget>[
+        children: <Widget>[
           Center(
             // Centrar verticalmente en el `Center`
             child: Text(
@@ -194,10 +197,10 @@ class _principalState extends State<principal> {
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        canvasColor: Color.fromARGB(255, 63, 73, 87),
+        canvasColor: const Color.fromARGB(255, 63, 73, 87),
         primaryColor: Colors.pinkAccent,
         textTheme: Theme.of(context).textTheme.copyWith(
-              caption: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+              bodySmall: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
       ),
       child: BottomNavigationBar(
@@ -210,7 +213,7 @@ class _principalState extends State<principal> {
               Icons.house_rounded,
               color: _currentIndex == 0
                   ? Colors.pinkAccent
-                  : Color.fromARGB(255, 254, 254, 255),
+                  : const Color.fromARGB(255, 254, 254, 255),
             ),
             label: 'Inicio',
           ),
@@ -219,7 +222,7 @@ class _principalState extends State<principal> {
               Icons.feed,
               color: _currentIndex == 1
                   ? Colors.pinkAccent
-                  : Color.fromARGB(255, 255, 255, 255),
+                  : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Información',
           ),
@@ -228,7 +231,7 @@ class _principalState extends State<principal> {
               Icons.settings,
               color: _currentIndex == 2
                   ? Colors.pinkAccent
-                  : Color.fromARGB(255, 255, 255, 255),
+                  : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Ajustes',
           ),
@@ -237,7 +240,7 @@ class _principalState extends State<principal> {
               Icons.person,
               color: _currentIndex == 3
                   ? Colors.pinkAccent
-                  : Color.fromARGB(255, 255, 255, 255),
+                  : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Perfil de Usuario',
           ),
@@ -275,7 +278,7 @@ class _principalState extends State<principal> {
         ]),
         TableRow(children: [
           _crearBotonesRedondeado(
-            Color.fromARGB(0, 255, 64, 128),
+            const Color.fromARGB(0, 255, 64, 128),
             'assets/sumavectores.png',
             'Suma de Vectores',
             () {
@@ -313,7 +316,7 @@ class _principalState extends State<principal> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: Container(
-              decoration: BoxDecoration( gradient: LinearGradient( colors: [color1, color2],
+              decoration: const BoxDecoration( gradient: LinearGradient( colors: [color1, color2],
                begin: Alignment.topLeft, 
                end: Alignment.bottomRight, 
                ),
@@ -332,7 +335,7 @@ class _principalState extends State<principal> {
                   ),
                   Text(
                     texto,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(height: 5.0),
                 ],
@@ -350,7 +353,7 @@ Widget _gradientBox(String label) {
     return Container(
       width: 200,
       height: 200,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [color1, color2],
           begin: Alignment.topLeft,
@@ -360,7 +363,7 @@ Widget _gradientBox(String label) {
       child: Center(
         child: Text(
           label,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           textAlign: TextAlign.center,
         ),
       ),

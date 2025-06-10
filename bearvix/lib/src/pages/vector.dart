@@ -8,7 +8,9 @@ import 'pagesPrefer/home_page.dart';
 import 'pagesPrefer/settings_page.dart';
 
 class Vector extends StatelessWidget {
-  final prefs = new PreferenciasUsario();
+  final prefs = PreferenciasUsario();
+
+  Vector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,15 @@ class Vector extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: getMaterialColorBasedOnPreference(prefs.colores),
       ),
-      home: VectorDrawer(),
+      home: const VectorDrawer(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class VectorDrawer extends StatefulWidget {
+  const VectorDrawer({super.key});
+
   @override
   _VectorDrawerState createState() => _VectorDrawerState();
 }
@@ -32,7 +36,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
   double angle = 0;
   double length = 0;
   double zoom = 1.0;
-  Offset offset = Offset(0, 0);
+  Offset offset = const Offset(0, 0);
   double xCoord = 0; // Coordenada X
   double yCoord = 0; // Coordenada Y
   int _currentIndex = 0;
@@ -46,25 +50,25 @@ class _VectorDrawerState extends State<VectorDrawer> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => principal()),
+          MaterialPageRoute(builder: (context) => const principal()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Conceptos()),
+          MaterialPageRoute(builder: (context) => const Conceptos()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
+          MaterialPageRoute(builder: (context) => const SettingsPage()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         break;
     }
@@ -89,7 +93,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Vectores'),
+        title: const Text('Vectores'),
         centerTitle: true,
       ),
       body: isWideScreen
@@ -100,7 +104,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(angle, length, zoom, xCoord, yCoord),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight,
                         ),
@@ -126,7 +130,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(angle, length, zoom, xCoord, yCoord),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight * 0.6,
                         ),
@@ -157,16 +161,16 @@ class _VectorDrawerState extends State<VectorDrawer> {
     return Column(
      
       children: [
-        Text(
+        const Text(
           'Información actual',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextField(
-          decoration: InputDecoration(labelText: 'Angulo'),
+          decoration: const InputDecoration(labelText: 'Angulo'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -174,9 +178,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextField(
-          decoration: InputDecoration(labelText: 'Tamaño'),
+          decoration: const InputDecoration(labelText: 'Tamaño'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -184,9 +188,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextField(
-          decoration: InputDecoration(labelText: 'Coordenada X'),
+          decoration: const InputDecoration(labelText: 'Coordenada X'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -194,9 +198,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Coordenada Y'),
+          decoration: const InputDecoration(labelText: 'Coordenada Y'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -204,15 +208,15 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: _increaseZoom,
-          child: Text('+ Zoom'),
+          child: const Text('+ Zoom'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: _decreaseZoom,
-          child: Text('- Zoom'),
+          child: const Text('- Zoom'),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -228,7 +232,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
         canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
         primaryColor: Colors.pinkAccent,
         textTheme: Theme.of(context).textTheme.copyWith(
-          caption: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          bodySmall: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
       child: BottomNavigationBar(
@@ -238,28 +242,28 @@ class _VectorDrawerState extends State<VectorDrawer> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.house_rounded,
-              color: _currentIndex == 0 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 0 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.feed,
-              color: _currentIndex == 1 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 1 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Información',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
-              color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Ajustes',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Perfil de Usuario',
           ),
@@ -314,7 +318,7 @@ class CartesianGridAndVectorPainter extends CustomPainter {
     for (double i = -size.width / 2; i <= size.width / 2; i += step) {
       if (i == 0) continue; // Evitar el cero
       final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: (i / step).toInt().toString(), style: TextStyle(color: Colors.black, fontSize: 10)),
+        text: TextSpan(text: (i / step).toInt().toString(), style: const TextStyle(color: Colors.black, fontSize: 10)),
         textDirection: TextDirection.ltr,
       );
       textPainter.layout();
@@ -325,7 +329,7 @@ class CartesianGridAndVectorPainter extends CustomPainter {
     for (double i = -size.height / 2; i <= size.height / 2; i += step) {
       if (i == 0) continue; // Evitar el cero
       final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: ((-i / step).toInt()).toString(), style: TextStyle(color: Colors.black, fontSize: 10)),
+        text: TextSpan(text: ((-i / step).toInt()).toString(), style: const TextStyle(color: Colors.black, fontSize: 10)),
         textDirection: TextDirection.ltr,
       );
       textPainter.layout();

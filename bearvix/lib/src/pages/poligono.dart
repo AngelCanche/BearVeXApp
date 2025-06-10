@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class Poligono extends StatelessWidget {
-  final prefs = new PreferenciasUsario();
+  final prefs = PreferenciasUsario();
+
+  Poligono({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,15 @@ class Poligono extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: getMaterialColorBasedOnPreference(prefs.colores),
       ),
-      home: VectorDrawer(),
+      home: const VectorDrawer(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class VectorDrawer extends StatefulWidget {
+  const VectorDrawer({super.key});
+
   @override
   _VectorDrawerState createState() => _VectorDrawerState();
 }
@@ -47,25 +51,25 @@ class _VectorDrawerState extends State<VectorDrawer> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => principal()),
+          MaterialPageRoute(builder: (context) => const principal()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Conceptos()),
+          MaterialPageRoute(builder: (context) => const Conceptos()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
+          MaterialPageRoute(builder: (context) => const SettingsPage()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         break;
     }
@@ -125,7 +129,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Método del Polígono'),
+        title: const Text('Método del Polígono'),
         centerTitle: true,
       ),
       body: isWideScreen
@@ -136,7 +140,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(vectors, zoom),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight,
                         ),
@@ -163,7 +167,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(vectors, zoom),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight*0.6,
                         ),
@@ -199,49 +203,49 @@ class _VectorDrawerState extends State<VectorDrawer> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
+        const Text(
           'Información actual',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Ángulo'),
+          decoration: const InputDecoration(labelText: 'Ángulo'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             angle = double.tryParse(value) ?? 0;
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Tamaño'),
+          decoration: const InputDecoration(labelText: 'Tamaño'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             length = double.tryParse(value) ?? 100;
           },
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () => _addVector(angle, length),
-          child: Text('Añadir Vector'),
+          child: const Text('Añadir Vector'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: _increaseZoom,
-          child: Text('+ Zoom'),
+          child: const Text('+ Zoom'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: _decreaseZoom,
-          child: Text('- Zoom'),
+          child: const Text('- Zoom'),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         // Mostrar el resultado de la resultante
         Text(
           'Resultante: \nÁngulo: ${resultant.angle.toStringAsFixed(2)}°\nMagnitud: ${resultant.length.toStringAsFixed(2)}\nComponente X: ${resultant.endX.toStringAsFixed(2)}\nComponente Y: ${resultant.endY.toStringAsFixed(2)}',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
       ],
@@ -254,7 +258,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
         canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
         primaryColor: Colors.pinkAccent,
         textTheme: Theme.of(context).textTheme.copyWith(
-          caption: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          bodySmall: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
       child: BottomNavigationBar(
@@ -264,28 +268,28 @@ class _VectorDrawerState extends State<VectorDrawer> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.house_rounded,
-              color: _currentIndex == 0 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 0 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.feed,
-              color: _currentIndex == 1 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 1 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Información',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
-              color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Ajustes',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: _currentIndex == 3 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 3 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Perfil de Usuario',
           ),

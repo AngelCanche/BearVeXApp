@@ -6,7 +6,9 @@
   import 'package:flutter/material.dart';
 
   class HomePage extends StatefulWidget {
-    static final String routeName = 'home';
+    static const String routeName = 'home';
+
+  const HomePage({super.key});
 
     @override
     _HomePageState createState() => _HomePageState();
@@ -17,7 +19,7 @@
     int _currentIndex = 0;
     Color getColorBasedOnPreference(int preference) {
     if (preference == 1) {
-      return Color.fromARGB(255, 3, 15, 126); // Azul
+      return const Color.fromARGB(255, 3, 15, 126); // Azul
     } else if (preference == 2) {
       return Colors.teal; // Verde
     } else if (preference == 3) {
@@ -38,25 +40,25 @@
         case 0:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => principal()),
+            MaterialPageRoute(builder: (context) => const principal()),
           );
           break;
         case 1:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Conceptos()),
+            MaterialPageRoute(builder: (context) => const Conceptos()),
           );
           break;
         case 2:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SettingsPage()),
+            MaterialPageRoute(builder: (context) => const SettingsPage()),
           );
           break;
         case 3:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => const HomePage()),
           );
           break;
       }
@@ -76,7 +78,7 @@
         body: Stack(
           children: <Widget>[
             Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
                   fit: BoxFit.cover,
@@ -87,11 +89,11 @@
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Nombre de usuario: ${prefs.nombreUsuario}'),
-            Divider(),
+            const Divider(),
             Text('Color seleccionado: ${prefs.colores}'),
-            Divider(),
+            const Divider(),
             Text('Género: ${prefs.genero}'),
-            Divider(),
+            const Divider(),
           ]
             )
           ],
@@ -106,7 +108,7 @@
           canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
           primaryColor: Colors.pinkAccent,
           textTheme: Theme.of(context).textTheme.copyWith(
-            caption: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            bodySmall: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
           ),
         ),
         child: BottomNavigationBar(
@@ -116,28 +118,28 @@
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.house_rounded,
-                color: _currentIndex == 0 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+                color: _currentIndex == 0 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Inicio',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.feed,
-                color: _currentIndex == 1 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+                color: _currentIndex == 1 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Información',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings,
-                color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+                color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Ajustes',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: _currentIndex == 3 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+                color: _currentIndex == 3 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Perfil de Usuario',
             ),

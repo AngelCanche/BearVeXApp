@@ -13,33 +13,33 @@ class MenuWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Container(),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('..//assets/menu-img.jpg'),
               fit: BoxFit.cover
               )
           ),
+          child: Container(),
           ),
 
           ListTile(
-            leading: Icon(Icons.pages, color: Colors.blue),
-            title: Text('Home'),
+            leading: const Icon(Icons.pages, color: Colors.blue),
+            title: const Text('Home'),
             onTap: ()=>Navigator.pushReplacementNamed(context, HomePage.routeName),
           ),
            ListTile(
-            leading: Icon(Icons.party_mode, color: Colors.blue),
-            title: Text('Party Mode'),
+            leading: const Icon(Icons.party_mode, color: Colors.blue),
+            title: const Text('Party Mode'),
             onTap: (){},
           ),
            ListTile(
-            leading: Icon(Icons.people, color: Colors.blue),
-            title: Text('People'),
+            leading: const Icon(Icons.people, color: Colors.blue),
+            title: const Text('People'),
             onTap: (){},
           ),
            ListTile(
-            leading: Icon(Icons.settings, color: Colors.blue),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings, color: Colors.blue),
+            title: const Text('Settings'),
             onTap: (){ 
               // Navigator.pop(context);
               Navigator.pushReplacementNamed(context, SettingsPage.routeName,);

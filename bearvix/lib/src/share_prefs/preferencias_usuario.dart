@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferenciasUsario{
 
 
- static final PreferenciasUsario _instancia = new PreferenciasUsario._internal();
+ static final PreferenciasUsario _instancia = PreferenciasUsario._internal();
 
  factory PreferenciasUsario(){
    return _instancia;
@@ -17,7 +17,7 @@ class PreferenciasUsario{
 
 
  initPrefs()async{
-   this._prefs = await SharedPreferences.getInstance();
+   _prefs = await SharedPreferences.getInstance();
  }
 
 

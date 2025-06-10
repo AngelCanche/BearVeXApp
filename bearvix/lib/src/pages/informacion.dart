@@ -7,7 +7,9 @@ import '../share_prefs/preferencias_usuario.dart';
 class Informacion extends StatelessWidget {
   
 
-  final prefs = new PreferenciasUsario(); 
+  final prefs = PreferenciasUsario();
+
+  Informacion({super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class Informacion extends StatelessWidget {
       title: 'Preferencias',
       initialRoute: prefs.ultimapagina,
       routes: {
-    HomePage.routeName:(BuildContext context) => HomePage(),
+    HomePage.routeName:(BuildContext context) => const HomePage(),
     SettingsPage.routeName:(BuildContext context)=> const SettingsPage(),
       },
     );

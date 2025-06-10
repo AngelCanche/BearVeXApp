@@ -15,6 +15,8 @@ import 'dart:math';
 
 class Paralelogramo extends StatelessWidget {
   final prefs = PreferenciasUsario();
+
+  Paralelogramo({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,13 +24,15 @@ class Paralelogramo extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: getMaterialColorBasedOnPreference(prefs.colores),
       ),
-      home: VectorDrawer(),
+      home: const VectorDrawer(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class VectorDrawer extends StatefulWidget {
+  const VectorDrawer({super.key});
+
   @override
   _VectorDrawerState createState() => _VectorDrawerState();
 }
@@ -39,7 +43,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
   double lengthA = 100;
   double lengthB = 100;
   double zoom = 1.0;
-  Offset offset = Offset(0, 0);
+  Offset offset = const Offset(0, 0);
   int _currentIndex = 0;
 
   double resultantLength = 0;
@@ -54,25 +58,25 @@ class _VectorDrawerState extends State<VectorDrawer> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => principal()),
+          MaterialPageRoute(builder: (context) => const principal()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Conceptos()),
+          MaterialPageRoute(builder: (context) => const Conceptos()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
+          MaterialPageRoute(builder: (context) => const SettingsPage()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         break;
     }
@@ -111,7 +115,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Método del Paralelogramo'),
+        title: const Text('Método del Paralelogramo'),
         centerTitle: true,
       ),
       body: isWideScreen
@@ -122,7 +126,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(angleA, lengthA, angleB, lengthB, resultantLength, resultantAngle, zoom),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight,
                         ),
@@ -148,7 +152,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
                     builder: (context, constraints) {
                       return CustomPaint(
                         painter: CartesianGridAndVectorPainter(angleA, lengthA, angleB, lengthB, resultantLength, resultantAngle, zoom),
-                        child: Container(
+                        child: SizedBox(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight*0.6,
                         ),
@@ -177,16 +181,16 @@ class _VectorDrawerState extends State<VectorDrawer> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
+        const Text(
           'Información actual',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Ángulo A'),
+          decoration: const InputDecoration(labelText: 'Ángulo A'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -195,9 +199,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Longitud A'),
+          decoration: const InputDecoration(labelText: 'Longitud A'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -206,9 +210,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Ángulo B'),
+          decoration: const InputDecoration(labelText: 'Ángulo B'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -217,9 +221,9 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(labelText: 'Longitud B'),
+          decoration: const InputDecoration(labelText: 'Longitud B'),
           keyboardType: TextInputType.number,
           onChanged: (value) {
             setState(() {
@@ -228,15 +232,15 @@ class _VectorDrawerState extends State<VectorDrawer> {
             });
           },
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: _increaseZoom,
-          child: Text('+ Zoom'),
+          child: const Text('+ Zoom'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: _decreaseZoom,
-          child: Text('- Zoom'),
+          child: const Text('- Zoom'),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -252,7 +256,7 @@ class _VectorDrawerState extends State<VectorDrawer> {
         canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
         primaryColor: Colors.pinkAccent,
         textTheme: Theme.of(context).textTheme.copyWith(
-          caption: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          bodySmall: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
       child: BottomNavigationBar(
@@ -262,28 +266,28 @@ class _VectorDrawerState extends State<VectorDrawer> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.house_rounded,
-              color: _currentIndex == 0 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 0 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.feed,
-              color: _currentIndex == 1 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 1 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Información',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
-              color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Ajustes',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: _currentIndex == 2 ? Colors.pinkAccent : Color.fromARGB(255, 255, 255, 255),
+              color: _currentIndex == 2 ? Colors.pinkAccent : const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Perfil de Usuario',
           ),

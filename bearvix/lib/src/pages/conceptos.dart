@@ -17,7 +17,7 @@ class _ConceptosState extends State<Conceptos> {
 
   Color getColorBasedOnPreference(int preference) {
     if (preference == 1) {
-      return Color.fromARGB(255, 3, 15, 126); // Azul
+      return const Color.fromARGB(255, 3, 15, 126); // Azul
     } else if (preference == 2) {
       return Colors.teal; // Verde
     } else if (preference == 3) {
@@ -36,16 +36,16 @@ class _ConceptosState extends State<Conceptos> {
 
     switch (index) {
       case 0:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const principal()));
         break;
       case 1:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Conceptos()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const Conceptos()));
         break;
       case 2:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
         break;
       case 3:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
         break;
     }
   }
@@ -127,7 +127,7 @@ class _ConceptosState extends State<Conceptos> {
         children: <Widget>[
           FadeInImage(
             image: AssetImage(imagePath),
-            placeholder: AssetImage('assets/17.1_jar-loading.gif'),
+            placeholder: const AssetImage('assets/17.1_jar-loading.gif'),
             fadeInDuration: const Duration(milliseconds: 200),
             height: 250.0,
             fit: BoxFit.cover,
@@ -136,14 +136,14 @@ class _ConceptosState extends State<Conceptos> {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Text(
               description,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.justify,
             ),
           ),
@@ -151,7 +151,7 @@ class _ConceptosState extends State<Conceptos> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Text(
               bodyText,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.justify,
             ),
           ),
@@ -165,7 +165,7 @@ class _ConceptosState extends State<Conceptos> {
       data: Theme.of(context).copyWith(
         canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
         primaryColor: Colors.pinkAccent,
-        textTheme: Theme.of(context).textTheme.copyWith(caption: TextStyle(color: Colors.white)),
+        textTheme: Theme.of(context).textTheme.copyWith(bodySmall: const TextStyle(color: Colors.white)),
       ),
       child: BottomNavigationBar(
         onTap: onTabTapped,

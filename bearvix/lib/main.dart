@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
-  final prefs = new PreferenciasUsario(); 
+  final prefs = PreferenciasUsario(); 
   await prefs.initPrefs ();
-  runApp(myapp());
+  runApp(const myapp());
 }

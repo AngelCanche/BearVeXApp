@@ -9,7 +9,7 @@ import 'package:bearvix/src/share_prefs/preferencias_usuario.dart';
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
   
-  static final String routeName = 'settings';
+  static const String routeName = 'settings';
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -19,9 +19,9 @@ class _SettingsPageState extends State<SettingsPage> {
   late bool _colorSecundario;
   late int _genero;
   late int _colorRadio;
-  String _nombre = 'Angel';
+  final String _nombre = 'Angel';
 
-  final prefs = new PreferenciasUsario();
+  final prefs = PreferenciasUsario();
   late TextEditingController _textEditingController;
 
   @override
@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _colorRadio = prefs.colores;
     _colorSecundario = prefs.colorSecundario;
 
-    _textEditingController = new TextEditingController(text: prefs.nombreUsuario);
+    _textEditingController = TextEditingController(text: prefs.nombreUsuario);
   }
 
   int _currentIndex = 0;
@@ -40,7 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
  
   Color getColorBasedOnPreference(int preference) {
     if (preference == 1) {
-      return Color.fromARGB(255, 3, 15, 126);
+      return const Color.fromARGB(255, 3, 15, 126);
     } else if (preference == 2) {
       return Colors.teal; 
     } else if (preference == 3) {
@@ -61,25 +61,25 @@ class _SettingsPageState extends State<SettingsPage> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => principal()),
+          MaterialPageRoute(builder: (context) => const principal()),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Conceptos()),
+          MaterialPageRoute(builder: (context) => const Conceptos()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
+          MaterialPageRoute(builder: (context) => const SettingsPage()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         break;
     }
@@ -114,6 +114,13 @@ class _SettingsPageState extends State<SettingsPage> {
           // Header con fondo matemático
           Container(
             padding: const EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/image.png'), // Fondo de matemáticas
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: const Text(
               'Ajustes',
               style: TextStyle(
@@ -123,15 +130,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: Colors.black,
               ),
             ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/image.png'), // Fondo de matemáticas
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
           ),
-          Divider(),
+          const Divider(),
           
           // Campo de texto para nombre
           Container(
@@ -156,19 +156,19 @@ class _SettingsPageState extends State<SettingsPage> {
           // Configuración de género
           Card(
             elevation: 5,
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
                 RadioListTile(
                   value: 1,
-                  title: Text('Masculino'),
+                  title: const Text('Masculino'),
                   groupValue: _genero,
                   onChanged: _setSelectedRadio,
                 ),
                 RadioListTile(
                   value: 2,
-                  title: Text('Femenino'),
+                  title: const Text('Femenino'),
                   groupValue: _genero,
                   onChanged: _setSelectedRadio,
                 ),
@@ -178,45 +178,45 @@ class _SettingsPageState extends State<SettingsPage> {
           
           // Elección de color de tema
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            child: Text(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: const Text(
               'Elige un tema',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           Card(
             elevation: 5,
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
                 RadioListTile(
                   value: 1,
-                  title: Text('Azul'),
+                  title: const Text('Azul'),
                   groupValue: _colorRadio,
                   onChanged: _SetElegirRadio,
                 ),
                 RadioListTile(
                   value: 2,
-                  title: Text('Verde'),
+                  title: const Text('Verde'),
                   groupValue: _colorRadio,
                   onChanged: _SetElegirRadio,
                 ),
                 RadioListTile(
                   value: 3,
-                  title: Text('Rojo'),
+                  title: const Text('Rojo'),
                   groupValue: _colorRadio,
                   onChanged: _SetElegirRadio,
                 ),
                 RadioListTile(
                   value: 4,
-                  title: Text('Morado'),
+                  title: const Text('Morado'),
                   groupValue: _colorRadio,
                   onChanged: _SetElegirRadio,
                 ),
                 RadioListTile(
                   value: 5,
-                  title: Text('Rosado'),
+                  title: const Text('Rosado'),
                   groupValue: _colorRadio,
                   onChanged: _SetElegirRadio,
                 ),
@@ -233,16 +233,16 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
+        canvasColor: const Color.fromRGBO(55, 57, 84, 1.0),
         primaryColor: Colors.pinkAccent,
         textTheme: Theme.of(context).textTheme.copyWith(
-          caption: TextStyle(color: Colors.white),
+          bodySmall: const TextStyle(color: Colors.white),
         ),
       ),
       child: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.house_rounded),
             label: 'Inicio',
